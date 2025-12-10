@@ -14,10 +14,34 @@ public class SongUtils {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
+    /**
+     * Performs a binary search on a sorted array of Songs to find a song with the given title
+     *
+     * @param songs the array of Songs to search
+     * @param songTitle the title to search for
+     * @return the Song with the specified title, if not null
+     * @throws IllegalArgumentException if songs or songTitle is null or empty
+     */
     public static Song[] searchBySongTitle(Song [] songs, String songTitle){
         // todo: ADD searchBySongTitle() LOGIC
         // Should implement binary search
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (songs == null || songTitle == null || songTitle.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid song array or song title.");
+        }
+
+        int low = 0, high = songs.length - 1;
+        String target = songTitle.toLowerCase();
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int cmp = target.compareTo(songs[mid].getTitle().toLowerCase());
+
+            if (cmp == 0) return songs[mid];
+            if (cmp < 0) high = mid - 1;
+            else low = mid + 1;
+        }
+
+        return null;
     }
 
     public static Song findMostPopular(Song [] songs){
