@@ -182,10 +182,48 @@ public class Song {
 
     }
 
+    /**
+     * check weather the given tag exist in the collection
+     * @param tag the tag to search
+     * @return true if the tag exists, false if the tag is invalid if it's not present;
+     */
+
     public boolean containsTag(String tag){
         // todo: ADD containsTag() LOGIC
         // Should implement binary search
-        throw new UnsupportedOperationException("Not implemented yet");
+        //   throw new UnsupportedOperationException("Not implemented yet");
+        if (tag==null){
+            throw new IllegalArgumentException("tag cannot be null");
+        }
+        tag =tag.trim();
+        if(tag.trim().isEmpty()){
+            throw new IllegalArgumentException("tag cannot be empty");
+
+        }
+        //Binary Search
+        int low=0;
+        int high=tagCount-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+
+            //compare middle elements with the target
+            int compare= tags[mid].compareToIgnoreCase(tag);
+            if (compare==0){//two strings are equel
+                return true;
+            } else if (compare<0) {//target elemet is after the middle element
+                low=mid+1;
+
+            }
+            else {//target elemet is before the middle element
+                high=mid-1;
+            }
+
+        }
+
+        return false;
+        //if it's not found
+
     }
 
     public String format(){
