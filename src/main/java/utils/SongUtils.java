@@ -44,9 +44,29 @@ public class SongUtils {
         return null;
     }
 
+    /**
+     * Finds and returns the Song with the highest rating in the array
+     * If multiple songs have the same highest rating, return the first one
+     *
+     * @param songs the array of Songs to search
+     * @return the most popular Song
+     * @throws IllegalArgumentException if songs is null or empty
+     */
     public static Song findMostPopular(Song [] songs){
         // todo: ADD findMostPopular() LOGIC
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (songs == null || songs.length == 0) {
+            throw new IllegalArgumentException("Song array cannot be null or empty.");
+        }
+
+        Song mostPopular = songs[0];
+        for (int i = 1; i < songs.length; i++) {
+            if (songs[i].getRating() > mostPopular.getRating()) {
+                mostPopular = songs[i];
+            }
+        }
+
+        return mostPopular;
+
     }
 
     public static void sortSongsBySongTitle(Song [] songs){
