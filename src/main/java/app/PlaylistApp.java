@@ -56,35 +56,60 @@ public class PlaylistApp {
 
     }
 
+    /**
+     * Display all songs in the given array
+     * @param songs is the array
+     */
+
     private static void displayAllSongs(Song[] songs) {
         System.out.println("All songs");
         for (Song song : songs){
+            //looping through every song and printing
             System.out.println(song.format());
         }
     }
-    private static void sortSongsMenu(Song[] songs){
-        String choice=scanner.nextLine().trim();
 
+    /**
+     * puser need to choose how to sort
+     * tags or by title
+     * @param songs is the array
+     */
+    private static void sortSongsMenu(Song[] songs){
+        // Read user input
+        String choice=scanner.nextLine().trim();
+//Switchng the options
         switch (choice){
             case "1"->{
+                //sorting by tags
                 SongUtils.sortSongsByNumTags(songs);
                 displayAllSongs(songs);
             }
             case "2"->{
+                // by title
                 SongUtils.sortSongsBySongTitle(songs);
                 displayAllSongs(songs);
             }
             default -> System.out.println("invalid");
         }
     }
-
+    /**
+     * Searches for songs that contain a specific tag.
+     * If matches are found, they are displayed; otherwise,
+     * no match
+     *
+     * @param songs is an array
+     */
     private static void searchByTag(Song[] songs){
+        //user input
         String tag= scanner.nextLine().trim();
+        //search song with given tag
         Song[] tSong=SongUtils.searchByTag(songs,tag);
+        //check if anything found
         if (tSong.length==0){
             System.out.println("no song found by this"+tag);
 
         }else {
+            //prining matching songs
             System.out.println("the song u searched for");
             for (Song song : tSong) {
                 System.out.println(song.format());
