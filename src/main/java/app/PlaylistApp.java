@@ -25,9 +25,6 @@ public class PlaylistApp {
             displayMenu();
             String choice = scanner.nextLine().trim();
 
-            /**
-             * @author DonMario
-             */
             switch (choice) {
                 case "1" -> displayAllSongs(songs);
                 case "2" -> sortSongsMenu(songs);
@@ -45,9 +42,6 @@ public class PlaylistApp {
         }
     }
 
-    /**
-     * @author DonMario
-     */
     private static void displayMenu() {
         System.out.println("\n--- Playlist Menu ---");
         System.out.println("1) Display all songs");
@@ -62,36 +56,60 @@ public class PlaylistApp {
 
     }
 
+    /**
+     * Display all songs in the given array
+     * @param songs is the array
+     */
+
     private static void displayAllSongs(Song[] songs) {
         System.out.println("All songs");
-        for (Song song : songs) {
+        for (Song song : songs){
+            //looping through every song and printing
             System.out.println(song.format());
         }
     }
 
-    private static void sortSongsMenu(Song[] songs) {
-        String choice = scanner.nextLine().trim();
-
-        switch (choice) {
-            case "1" -> {
+    /**
+     * puser need to choose how to sort
+     * tags or by title
+     * @param songs is the array
+     */
+    private static void sortSongsMenu(Song[] songs){
+        // Read user input
+        String choice=scanner.nextLine().trim();
+//Switchng the options
+        switch (choice){
+            case "1"->{
+                //sorting by tags
                 SongUtils.sortSongsByNumTags(songs);
                 displayAllSongs(songs);
             }
-            case "2" -> {
+            case "2"->{
+                // by title
                 SongUtils.sortSongsBySongTitle(songs);
                 displayAllSongs(songs);
             }
             default -> System.out.println("invalid");
         }
     }
+    /**
+     * Searches for songs that contain a specific tag.
+     * If matches are found, they are displayed; otherwise,
+     * no match
+     *
+     * @param songs is an array
+     */
+    private static void searchByTag(Song[] songs){
+        //user input
+        String tag= scanner.nextLine().trim();
+        //search song with given tag
+        Song[] tSong=SongUtils.searchByTag(songs,tag);
+        //check if anything found
+        if (tSong.length==0){
+            System.out.println("no song found by this"+tag);
 
-    private static void searchByTag(Song[] songs) {
-        String tag = scanner.nextLine().trim();
-        Song[] tSong = SongUtils.searchByTag(songs, tag);
-        if (tSong.length == 0) {
-            System.out.println("no song found by this" + tag);
-
-        } else {
+        }else {
+            //prining matching songs
             System.out.println("the song u searched for");
             for (Song song : tSong) {
                 System.out.println(song.format());
@@ -106,7 +124,6 @@ public class PlaylistApp {
      * Songs array is sorted by title before searching
      *
      * @param songs array of Song objects
-     * @author DonMario
      */
     private static void searchByTitle(Song[] songs) {
         System.out.print("Enter song title to search: ");
@@ -114,13 +131,15 @@ public class PlaylistApp {
 
         // Sort by title before binary search
         SongUtils.sortSongsBySongTitle(songs);
-        Song found = SongUtils.searchBySongTitle(songs, title);
+        Song[] found = SongUtils.searchBySongTitle(songs, title);
 
         if (found == null) {
             System.out.println("Song not found: " + title);
         } else {
             System.out.println("Song found:");
-            System.out.println(found.format());
+            for (int i=0;i< found.length;i++) {
+                System.out.println(found[i].format());
+            }
 
         }
     }
@@ -133,7 +152,6 @@ public class PlaylistApp {
      * Allows the user to add or remove tags from a specific song
      *
      * @param songs array of Song objects
-     * @author DonMario
      */
     private static void editSongTags(Song[] songs) {
         System.out.print("Enter the title of the song to edit: ");
@@ -180,48 +198,6 @@ public class PlaylistApp {
                 }
             }
             default -> System.out.println("Invalid choice for editing tags.");
-
-
-        }
-    }
-
-    /**
-     * Finds and displays the most popular song
-     *
-     * @param songs array of Song objects
-     * @author DonMario
-     */
-    private static void displayMostPopularSong(Song[] songs) {
-        try {
-            Song popular = SongUtils.findMostPopular(songs);
-            System.out.println("\n--- Most Popular Song ---");
-            System.out.println(popular.format());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Finds and displays the most common tag across all songs
-     *
-     * @param songs array of Song objects
-     * @author DonMario
-     */
-    private static void displayMostCommonTag(Song[] songs) {
-        try {
-            String commonTag = SongUtils.findMostCommonTag(songs);
-            if (commonTag != null) {
-                System.out.println("Most common tag in playlist: " + commonTag);
-            } else {
-                System.out.println("No tags found in the playlist.");
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
         }
     }
 }
-
-
-
-
-
