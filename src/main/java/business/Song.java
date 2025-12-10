@@ -153,6 +153,29 @@ public class Song {
 
     public String format(){
         // todo: ADD format() LOGIC
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+        /**
+        * Returns formatted song detail
+        * @return song information
+        */
+            StringBuilder sb = new StringBuilder();
+            sb.append("Title: ").append(title).append("\n");
+            sb.append("Artist: ").append(artist).append("\n");
+            sb.append("Album: ").append(album).append("\n");
+            sb.append("Rating: ").append(rating).append("\n");
+            sb.append("Genre: ").append(genre).append("\n");
+            sb.append("Tags: ");
+
+            if (tagCount == 0) {
+                sb.append("None");
+            } else {
+                for (int i = 0; i < tagCount; i++) {
+                    sb.append(tags[i]);
+                    if (i < tagCount - 1) sb.append(", ");
+                }
+            }
+
+            return sb.toString();
+        }
+
+
 }
