@@ -210,7 +210,6 @@ public class Song {
                     if (i < tagCount - 1) sb.append(", ");
                 }
             }
-
             return sb.toString();
         }
 
