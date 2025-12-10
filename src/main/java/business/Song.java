@@ -107,6 +107,7 @@ public class Song {
      * if the tag already exist it's not added
      * @param tag the tag to add
      * @return true if the tag was added false if already existed
+     * @author Nassim
      */
 
     public boolean addTag(String tag){
@@ -190,6 +191,7 @@ public class Song {
      * check weather the given tag exist in the collection
      * @param tag the tag to search
      * @return true if the tag exists, false if the tag is invalid if it's not present;
+     * @author Nassim
      */
 
     public boolean containsTag(String tag){

@@ -14,6 +14,7 @@ public class SongUtils {
      * @param songs  array of songs
      * @param tag the tag to search for
      * @return an array of songs that contain the given tag
+     * @author Nassim
      */
     public static Song[] searchByTag(Song [] songs, String tag){
         // todo: ADD searchByTag() LOGIC
@@ -122,7 +123,8 @@ public class SongUtils {
 
     /**
      *
-     * @param songs the array of songsto sort
+     * @param songs the array of songs to sort
+     * @author Nassim
      */
     public static void sortSongsByNumTags(Song [] songs){
         // todo: ADD sortSongsByNumTags() LOGIC
@@ -153,6 +155,7 @@ public class SongUtils {
      *
      * @param songs the array of song
      * @return the most common tag
+     * @author Nassim
      */
 
     public static String findMostCommonTag(Song [] songs){
