@@ -135,3 +135,22 @@ public class PlaylistApp {
                 default -> System.out.println("Invalid choice for editing tags.");
             }
         }
+
+
+//Find the most popular song and display it
+        /**
+        * Finds and displays the most popular or the highest rated song
+        *
+        * @param songs array of Song objects
+        */
+            private static void displayMostPopularSong(Song[] songs) {
+                 try {
+                     Song popular = SongUtils.findMostPopular(songs);
+                     System.out.println("\n--- Most Popular Song ---");
+                     System.out.println(popular.format());
+                 }
+                 catch (IllegalArgumentException e) {
+                     System.out.println("Error: " + e.getMessage());
+            }
+        }
+
