@@ -7,6 +7,8 @@ import utils.SongUtils;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static PlaylistApp.scanner;
+
 /**
  *
  * @author michelle
@@ -63,7 +65,7 @@ public class PlaylistApp {
          */
         private static void searchByTitle(Song[] songs) {
             System.out.print("Enter song title to search: ");
-            String title = scanner.nextLine().trim();
+            String title = PlaylistApp.scanner.nextLine().trim();
 
             // Sort by title before binary search
             SongUtils.sortSongsBySongTitle(songs);
@@ -77,3 +79,59 @@ public class PlaylistApp {
 
     }
 }
+
+//Choose a song to edit, then
+//o Add an tag to the specified song
+//o Remove an tag from the specified song
+        /**
+        * Allows the user to add or remove tags from a specific song
+        *
+        * @param songs array of Song objects
+        */
+        private static void editSongTags(Song[] songs) {
+            System.out.print("Enter the title of the song to edit: ");
+            String title = PlaylistApp.scanner.nextLine().trim();
+
+            // Sort by title before binary search
+            SongUtils.sortSongsBySongTitle(songs);
+            Song song = SongUtils.searchBySongTitle(songs, title);
+
+            if (song == null) {
+                System.out.println("Song not found: " + title);
+                return;
+            }
+
+            System.out.println("Editing tags for: " + song.getTitle());
+            System.out.println("Current tags: " + Arrays.toString(song.getTags()));
+            System.out.println("1) Add a tag");
+            System.out.println("2) Remove a tag");
+            System.out.print("Enter choice: ");
+            String choice = PlaylistApp.scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1" -> {
+                    System.out.print("Enter tag to add: ");
+                    String tagToAdd = PlaylistApp.scanner.nextLine().trim();
+                    try {
+                        if (song.addTag(tagToAdd)) {
+                            System.out.println("Tag added successfully.");
+                        } else {
+                            System.out.println("Tag already exists.");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                case "2" -> {
+                    System.out.print("Enter tag to remove: ");
+                    String tagToRemove = PlaylistApp.scanner.nextLine().trim();
+                    try {
+                        song.removeTag(tagToRemove);
+                        System.out.println("Tag removed successfully.");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                default -> System.out.println("Invalid choice for editing tags.");
+            }
+        }
