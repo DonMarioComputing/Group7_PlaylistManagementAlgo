@@ -53,3 +53,27 @@ public class PlaylistApp {
 
     }
 }
+
+//Search for a specific song based on song title (and display it if present)
+        /**
+         * Searches for a song by title using binary search
+         * Songs array is sorted by title before searching
+         *
+         * @param songs array of Song objects
+         */
+        private static void searchByTitle(Song[] songs) {
+            System.out.print("Enter song title to search: ");
+            String title = scanner.nextLine().trim();
+
+            // Sort by title before binary search
+            SongUtils.sortSongsBySongTitle(songs);
+            Song found = SongUtils.searchBySongTitle(songs, title);
+
+            if (found == null) {
+                System.out.println("Song not found: " + title);
+            } else {
+                System.out.println("Song found:");
+                System.out.println(found.format());
+
+    }
+}
