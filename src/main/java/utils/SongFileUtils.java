@@ -61,7 +61,7 @@ public class SongFileUtils {
             }
             String genre = components[4];
             String [] tagList = components[5].split("~~");
-            Arrays.sort(tagList);
+            Arrays.sort(tagList,String::compareToIgnoreCase);
             
             song = new Song(title, artist, album, rating, genre, tagList);
         }
