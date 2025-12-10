@@ -7,6 +7,8 @@ import utils.SongUtils;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static PlaylistApp.scanner;
+
 /**
  *
  * @author michelle
@@ -52,4 +54,108 @@ public class PlaylistApp {
         System.out.print("Enter your choice: ");
 
     }
+//Display all songs
+    private static void displayAllSongs(Song[] songs){
+        System.out.println("Songs");
+        for (Song song: songs){
+            System.out.println(song.format());
+        }
+    }
+
+    private static void sortSongsMenu(Song[] songs){
+        String choice = scanner.nextLine().trim();
+
+        switch (choice){
+            case " 1" ->{
+                SongUtils.sortSongsBySongTitle(songs);
+                displayAllSongs(songs);
+            }
+            case " 2" ->{
+                SongUtils.sortSongsByNumTags(songs);
+                displayAllSongs(songs);
+            }
+            default -> System.out.println("invalid ");
+        }
+    }
+
 }
+//Search for a specific song based on song title (and display it if present)
+        /**
+         * Searches for a song by title using binary search
+         * Songs array is sorted by title before searching
+         *
+         * @param songs array of Song objects
+         */
+        private static void searchByTitle(Song[] songs) {
+            System.out.print("Enter song title to search: ");
+            String title = PlaylistApp.scanner.nextLine().trim();
+
+            // Sort by title before binary search
+            SongUtils.sortSongsBySongTitle(songs);
+            Song found = SongUtils.searchBySongTitle(songs, title);
+
+            if (found == null) {
+                System.out.println("Song not found: " + title);
+            } else {
+                System.out.println("Song found:");
+                System.out.println(found.format());
+
+    }
+}
+
+//Choose a song to edit, then
+//o Add an tag to the specified song
+//o Remove an tag from the specified song
+        /**
+        * Allows the user to add or remove tags from a specific song
+        *
+        * @param songs array of Song objects
+        */
+        private static void editSongTags(Song[] songs) {
+            System.out.print("Enter the title of the song to edit: ");
+            String title = PlaylistApp.scanner.nextLine().trim();
+
+            // Sort by title before binary search
+            SongUtils.sortSongsBySongTitle(songs);
+            Song song = SongUtils.searchBySongTitle(songs, title);
+
+            if (song == null) {
+                System.out.println("Song not found: " + title);
+                return;
+            }
+
+            System.out.println("Editing tags for: " + song.getTitle());
+            System.out.println("Current tags: " + Arrays.toString(song.getTags()));
+            System.out.println("1) Add a tag");
+            System.out.println("2) Remove a tag");
+            System.out.print("Enter choice: ");
+            String choice = PlaylistApp.scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1" -> {
+                    System.out.print("Enter tag to add: ");
+                    String tagToAdd = PlaylistApp.scanner.nextLine().trim();
+                    try {
+                        if (song.addTag(tagToAdd)) {
+                            System.out.println("Tag added successfully.");
+                        } else {
+                            System.out.println("Tag already exists.");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                case "2" -> {
+                    System.out.print("Enter tag to remove: ");
+                    String tagToRemove = PlaylistApp.scanner.nextLine().trim();
+                    try {
+                        song.removeTag(tagToRemove);
+                        System.out.println("Tag removed successfully.");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                default -> System.out.println("Invalid choice for editing tags.");
+            }
+        }
+>>>>>>> origin/main
