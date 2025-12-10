@@ -106,15 +106,13 @@ public class PlaylistApp {
 
         // Sort by title before binary search
         SongUtils.sortSongsBySongTitle(songs);
-        Song[] found = SongUtils.searchBySongTitle(songs, title);
+        Song found = SongUtils.searchBySongTitle(songs, title);
 
         if (found == null) {
             System.out.println("Song not found: " + title);
         } else {
             System.out.println("Song found:");
-            for (int i=0;i< found.length;i++) {
-                System.out.println(found[i].format());
-            }
+            System.out.println(found.format());
 
         }
     }
