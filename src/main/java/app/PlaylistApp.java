@@ -56,37 +56,21 @@ public class PlaylistApp {
 
     }
 
-    /**
-     * Display All the odes in the given Array
-     *
-     * @param songs an array of songs
-     */
-
     private static void displayAllSongs(Song[] songs) {
         System.out.println("All songs");
-        //going throgh all songs and print in formated
         for (Song song : songs){
             System.out.println(song.format());
         }
     }
-
-    /**
-     * user can choose  how to sort by tag or title
-     * @param songs is the array
-     */
     private static void sortSongsMenu(Song[] songs){
-        //read user choice
         String choice=scanner.nextLine().trim();
 
-// switch expression handles sorting options
         switch (choice){
             case "1"->{
-                //Sort song by number of tags
                 SongUtils.sortSongsByNumTags(songs);
                 displayAllSongs(songs);
             }
             case "2"->{
-                //Sort song alphabetically by title
                 SongUtils.sortSongsBySongTitle(songs);
                 displayAllSongs(songs);
             }
@@ -94,25 +78,14 @@ public class PlaylistApp {
         }
     }
 
-    /**
-     *  * Searches for songs that contain a specific tag.
-     * If matches are found, they are displayed; otherwise,
-     *no mtches
-     * @param songs an array
-     */
-
     private static void searchByTag(Song[] songs){
-        //read input from the user
         String tag= scanner.nextLine().trim();
-        //search for songs containing given tag
         Song[] tSong=SongUtils.searchByTag(songs,tag);
-        //checking if any songs found
         if (tSong.length==0){
             System.out.println("no song found by this"+tag);
 
         }else {
             System.out.println("the song u searched for");
-            //prinyt matching song
             for (Song song : tSong) {
                 System.out.println(song.format());
             }
@@ -133,13 +106,15 @@ public class PlaylistApp {
 
         // Sort by title before binary search
         SongUtils.sortSongsBySongTitle(songs);
-        Song found = SongUtils.searchBySongTitle(songs, title);
+        Song[] found = SongUtils.searchBySongTitle(songs, title);
 
         if (found == null) {
             System.out.println("Song not found: " + title);
         } else {
             System.out.println("Song found:");
-            System.out.println(found.format());
+            for (int i=0;i< found.length;i++) {
+                System.out.println(found[i].format());
+            }
 
         }
     }
