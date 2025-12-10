@@ -69,10 +69,30 @@ public class SongUtils {
 
     }
 
+    /**
+     * Sorts an array of Songs in ascending order by song title
+     * Implements a Bubble Sort using nested loops
+     *
+     * @param songs the array of Songs to sort
+     * @throws IllegalArgumentException if songs is null
+     */
     public static void sortSongsBySongTitle(Song [] songs){
         // todo: ADD sortSongsBySongTitle() LOGIC
         // Should implement for-loop based bubble sort
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (songs == null) {
+            throw new IllegalArgumentException("Song array cannot be null.");
+        }
+
+        int n = songs.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (songs[j].getTitle().compareToIgnoreCase(songs[j + 1].getTitle()) > 0) {
+                    Song temp = songs[j];
+                    songs[j] = songs[j + 1];
+                    songs[j + 1] = temp;
+                }
+            }
+        }
     }
 
     public static void sortSongsByNumTags(Song [] songs){
