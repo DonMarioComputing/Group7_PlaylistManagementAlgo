@@ -55,14 +55,97 @@ public class SongUtils {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
+    /**
+     *
+     * @param songs the array of songsto sort
+     */
     public static void sortSongsByNumTags(Song [] songs){
         // todo: ADD sortSongsByNumTags() LOGIC
         // Should implement selection sort
-        throw new UnsupportedOperationException("Not implemented yet");
+//        throw new UnsupportedOperationException("Not implemented yet");
+
+        if (songs==null){
+            throw new IllegalArgumentException("songs can't be null");
+
+        }
+        //outerLoop going through each pos in the array
+        for (int i=0;i<songs.length;i++){
+            int maxIndex=i;//assuming max tag count is current index
+            //innerLoop finding the highest tag count
+            for (int j=i+1;j<songs.length;j++){
+                if (songs[j].getTagCount()>songs[maxIndex].getTagCount()){
+                    maxIndex=j;//finding the highest tag count
+                }
+            }
+            //swaping the songs
+            Song swap=songs[i];
+            songs[i]=songs[maxIndex];
+            songs[maxIndex]=swap;
+        }
     }
+
+    /**
+     *
+     * @param songs the array of song
+     * @return the most common tag
+     */
 
     public static String findMostCommonTag(Song [] songs){
         // todo: ADD findMostCommonTag() LOGIC
-        throw new UnsupportedOperationException("Not implemented yet");
+        //  throw new UnsupportedOperationException("Not implemented yet");
+
+        if (songs==null||songs.length==0){
+            throw new IllegalArgumentException("songs cant be null");
+        }
+
+        //finding the total tag
+
+        int tagLength=0;
+        for (int i=0;i< songs.length;i++){
+            if (songs[i]!=null){
+                tagLength+=songs[i].getTagCount();
+            }
+        }
+        //creating newArrayrray with  total tagNumber
+        String[] nArray= new String[tagLength];
+        int tagCount=0;
+        for (int i=0;i< songs.length;i++){
+            if (songs[i]!=null){
+                for (int j=0;j<songs[i].getTagCount();j++){
+                    nArray[tagCount++]=songs[i].getTags()[j];//copying each tags
+                }
+            }
+        }
+        //if no found return null
+        if (tagCount==0){
+            return null;
+        }
+        //Counting the freq of each tag
+        int maxFreq=0;
+        String commenTag=null;
+
+        for (int i=0;i<tagCount;i++){
+            String tag=nArray[i];
+            int freq=0;
+
+//Counting the tag in the array
+            for (int j=0;j<tagCount;j++){
+                if (tag.equalsIgnoreCase(nArray[j])){
+                    freq++;
+                }
+            }
+            //updating thr tag with comon tag
+            if (freq>maxFreq||freq==maxFreq){
+                maxFreq=freq;
+                commenTag=tag;
+            }
+        }
+        //return mostCommon tag
+        return commenTag;
+
+
+
     }
 }
+
+
