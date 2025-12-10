@@ -7,6 +7,7 @@ import business.Song;
  * @author michelle
  */
 public class SongUtils {
+
     public static Song[] searchByTag(Song [] songs, String tag){
         // todo: ADD searchByTag() LOGIC
         // Should implement linear search, but not for a single result

@@ -5,6 +5,7 @@ import business.Song;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,6 +61,7 @@ public class SongFileUtils {
             }
             String genre = components[4];
             String [] tagList = components[5].split("~~");
+            Arrays.sort(tagList);
             
             song = new Song(title, artist, album, rating, genre, tagList);
         }
