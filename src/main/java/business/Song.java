@@ -148,17 +148,21 @@ public class Song {
 
 
     }
+
+
+    /**
+     * Removes a tag shifting the remaining entries
+     * Throws exception if tag is not found
+     *
+     * @param tag tag to remove
+     * @return true if removed
+     * @author DonMario
+     */
     public boolean removeTag(String tag){
         // todo: ADD removeTag() LOGIC
         // Should implement APPROPRIATE delete action
-        // Question to ask yourself: Which is more appropriate here - overwrite or shift?
-        /**
-         * Removes a tag shifting the remaining entries
-         * Throws exception if tag is not found
-         *
-         * @param tag tag to remove
-         * @return true if removed
-         */
+        // Question to ask yourself: Which is more appropriate here - overwrite or shift? shift
+
         if (tag == null || tag.trim().isEmpty()) {
             throw new IllegalArgumentException("Tag cannot be null or empty.");
         }
@@ -226,12 +230,14 @@ public class Song {
 
     }
 
+    /**
+     * Returns formatted song detail
+     * @return song information
+     * @author DonMario
+     */
     public String format(){
         // todo: ADD format() LOGIC
-        /**
-        * Returns formatted song detail
-        * @return song information
-        */
+
             StringBuilder sb = new StringBuilder();
             sb.append("Title: ").append(title).append("\n");
             sb.append("Artist: ").append(artist).append("\n");

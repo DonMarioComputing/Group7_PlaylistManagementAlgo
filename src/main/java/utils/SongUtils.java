@@ -24,7 +24,7 @@ public class SongUtils {
             throw new IllegalArgumentException("song array cannot be null or empty");
 
         }
-        //creating a dublicate array with the same size
+        //creating a duplicate array with the same size
         Song[] results=new Song[songs.length];
         int count=0;//counting the matches found
         //check that the song contains the given tag or is it null
@@ -43,6 +43,7 @@ public class SongUtils {
      * @param songTitle the title to search for
      * @return the Song with the specified title, if not null
      * @throws IllegalArgumentException if songs or songTitle is null or empty
+     * @author DonMario
      */
     public static Song[] searchBySongTitle(Song [] songs, String songTitle){
         // todo: ADD searchBySongTitle() LOGIC
@@ -73,6 +74,7 @@ public class SongUtils {
      * @param songs the array of Songs to search
      * @return the most popular Song
      * @throws IllegalArgumentException if songs is null or empty
+     * @author DonMario
      */
     public static Song findMostPopular(Song [] songs){
         // todo: ADD findMostPopular() LOGIC
@@ -97,6 +99,7 @@ public class SongUtils {
      *
      * @param songs the array of Songs to sort
      * @throws IllegalArgumentException if songs is null
+     * @author DonMario
      */
     public static void sortSongsBySongTitle(Song [] songs){
         // todo: ADD sortSongsBySongTitle() LOGIC
