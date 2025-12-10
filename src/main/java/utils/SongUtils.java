@@ -2,18 +2,40 @@ package utils;
 
 import business.Song;
 
+import java.util.Arrays;
+
 /**
  *
  * @author michelle
  */
 public class SongUtils {
 
+    /**
+     * @param songs  array of songs
+     * @param tag the tag to search for
+     * @return an array of songs that contain the given tag
+     */
     public static Song[] searchByTag(Song [] songs, String tag){
         // todo: ADD searchByTag() LOGIC
         // Should implement linear search, but not for a single result
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+        //  throw new UnsupportedOperationException("Not implemented yet");
 
+        if (songs==null||tag==null||tag.trim().isEmpty()){
+            throw new IllegalArgumentException("song array cannot be null or empty");
+
+        }
+        //creating a dublicate array with the same size
+        Song[] results=new Song[songs.length];
+        int count=0;//counting the matches found
+        //check that the song contains the given tag or is it null
+        for (Song s: songs){
+            if (s!=null&&s.containsTag(tag)){
+                results[count++]=s;//Adding the matching song to the new array
+            }
+        }
+        //creating an array with the actual number of matches found
+        return Arrays.copyOf(results,count);
+    }
     /**
      * Performs a binary search on a sorted array of Songs to find a song with the given title
      *
