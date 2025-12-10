@@ -200,4 +200,39 @@ public class PlaylistApp {
             default -> System.out.println("Invalid choice for editing tags.");
         }
     }
+    /**
+     * Finds and displays the most popular song
+     *
+     * @param songs array of Song objects
+     * @author DonMario
+     */
+    private static void displayMostPopularSong(Song[] songs) {
+        try {
+            Song popular = SongUtils.findMostPopular(songs);
+            System.out.println("\n--- Most Popular Song ---");
+            System.out.println(popular.format());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Finds and displays the most common tag across all songs
+     *
+     * @param songs array of Song objects
+     * @author DonMario
+     */
+    private static void displayMostCommonTag(Song[] songs) {
+        try {
+            String commonTag = SongUtils.findMostCommonTag(songs);
+            if (commonTag != null) {
+                System.out.println("Most common tag in playlist: " + commonTag);
+            } else {
+                System.out.println("No tags found in the playlist.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
+
