@@ -1,5 +1,10 @@
 package app;
 
+import business.Song;
+import utils.SongFileUtils;
+import utils.SongUtils;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -8,55 +13,43 @@ import java.util.Scanner;
  */
 public class PlaylistApp {
 
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        Scanner input = new Scanner(System.in);
+        Song[] songs = SongFileUtils.readSongFile("sampleSongInput.txt");
+
         boolean keepRunning = true;
-        while(keepRunning) {
+        while (keepRunning) {
             displayMenu();
+            String choice = scanner.nextLine().trim();
 
-            String choice = input.nextLine();
-
-            switch(choice){
-                // if(case.equals("1")
-                case "1":
-                    handleHello();
-                    break;
-                case "2":
-                    handleGoodbye();
-                    break;
-                case "3":
-                    handleWhat();
-                    break;
-                case "0":
+            switch (choice) {
+                case "1" -> displayAllSongs(songs);
+                case "2" -> sortSongsMenu(songs);
+                case "3" -> searchByTag(songs);
+                case "4" -> searchByTitle(songs);
+                case "5" -> editSongTags(songs);
+                case "6" -> displayMostPopularSong(songs);
+                case "7" -> displayMostCommonTag(songs);
+                case "0" -> {
                     keepRunning = false;
-                    break;
-                default:
-                    System.out.println("Please enter a valid option!!!");
+                    System.out.println("Exiting Playlist Application. Goodbye!");
+                }
+                default -> System.out.println("Invalid option. Please try again.");
             }
         }
-
-        System.out.println("Program terminating. Goodbye!");
-    }
-
-    private static void handleHello(){
-        System.out.println("Hi!!");
-    }
-
-    private static void handleGoodbye() {
-        System.out.println("Bye!!");
-    }
-
-    private static void handleWhat(){
-        System.out.println("Whaaaaaaaaaaaaaaaaaat?!");
     }
 
     private static void displayMenu() {
-        System.out.printf("Please select from the following options: ");
-        System.out.println("1) Say hi");
-        System.out.println("2) Say bye");
-        System.out.println("3) Say what?!");
+        System.out.println("\n--- Playlist Menu ---");
+        System.out.println("1) Display all songs");
+        System.out.println("2) Sort songs");
+        System.out.println("3) Search songs by tag");
+        System.out.println("4) Search song by title");
+        System.out.println("5) Edit a song's tags");
+        System.out.println("6) Find the most popular song");
+        System.out.println("7) Find the most common tag");
         System.out.println("0) Exit");
-        System.out.println("This is a naive change!");
+        System.out.print("Enter your choice: ");
+
     }
 }
