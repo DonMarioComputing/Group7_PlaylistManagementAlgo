@@ -58,7 +58,7 @@ public class SongUtils {
             int mid = (low + high) / 2;
             int cmp = target.compareTo(songs[mid].getTitle().toLowerCase());
 
-            if (cmp == 0) return songs[mid];
+            if (cmp == 0) return new Song[]{songs[mid]};
             if (cmp < 0) high = mid - 1;
             else low = mid + 1;
         }
