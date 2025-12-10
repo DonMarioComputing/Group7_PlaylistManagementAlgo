@@ -154,3 +154,21 @@ public class PlaylistApp {
             }
         }
 
+//Find the most common tag and display it
+       /**
+       * Finds and displays the most common tag across all songs
+       *
+       * @param songs array of Song objects
+       */
+           private static void displayMostCommonTag(Song[] songs) {
+               try {
+                   String commonTag = SongUtils.findMostCommonTag(songs);
+                   if (commonTag != null) {
+                       System.out.println("Most common tag in playlist: " + commonTag);
+                   } else {
+                       System.out.println("No tags found in the playlist.");
+                   }
+               } catch (IllegalArgumentException e) {
+                    System.out.println("Error: " + e.getMessage());
+      }
+}
