@@ -11,7 +11,7 @@ import static PlaylistApp.scanner;
 
 /**
  *
- * @author michelle
+ * @author DonMario
  */
 public class PlaylistApp {
 
@@ -41,6 +41,10 @@ public class PlaylistApp {
         }
     }
 
+    /**
+     *
+     * @author DonMario
+     */
     private static void displayMenu() {
         System.out.println("\n--- Playlist Menu ---");
         System.out.println("1) Display all songs");
@@ -62,6 +66,7 @@ public class PlaylistApp {
          * Songs array is sorted by title before searching
          *
          * @param songs array of Song objects
+         * @author DonMario
          */
         private static void searchByTitle(Song[] songs) {
             System.out.print("Enter song title to search: ");
@@ -87,6 +92,7 @@ public class PlaylistApp {
         * Allows the user to add or remove tags from a specific song
         *
         * @param songs array of Song objects
+        * @author DonMario
         */
         private static void editSongTags(Song[] songs) {
             System.out.print("Enter the title of the song to edit: ");
@@ -142,6 +148,7 @@ public class PlaylistApp {
         * Finds and displays the most popular or the highest rated song
         *
         * @param songs array of Song objects
+        * @author DonMario
         */
             private static void displayMostPopularSong(Song[] songs) {
                  try {
@@ -155,11 +162,12 @@ public class PlaylistApp {
         }
 
 //Find the most common tag and display it
-       /**
-       * Finds and displays the most common tag across all songs
-       *
-       * @param songs array of Song objects
-       */
+        /**
+        * Finds and displays the most common tag across all songs
+        *
+        * @param songs array of Song objects
+        * @author DonMario
+        */
            private static void displayMostCommonTag(Song[] songs) {
                try {
                    String commonTag = SongUtils.findMostCommonTag(songs);
@@ -171,4 +179,7 @@ public class PlaylistApp {
                } catch (IllegalArgumentException e) {
                     System.out.println("Error: " + e.getMessage());
       }
+}
+
+void main() {
 }
