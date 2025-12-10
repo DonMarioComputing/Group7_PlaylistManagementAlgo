@@ -107,6 +107,7 @@ public class Song {
         // Should implement APPROPRIATE insert action
         // Question to ask yourself: Which is more appropriate here - overwrite or shift?
         // Reminder: Do not allow duplicate tags to be added!
+        // Reminder: Make sure you insert in SORTED ORDER!
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
@@ -114,7 +115,34 @@ public class Song {
         // todo: ADD removeTag() LOGIC
         // Should implement APPROPRIATE delete action
         // Question to ask yourself: Which is more appropriate here - overwrite or shift?
-        throw new UnsupportedOperationException("Not implemented yet");
+        /**
+         * Removes a tag shifting the remaining entries
+         * Throws exception if tag is not found
+         *
+         * @param tag tag to remove
+         * @return true if removed
+         */
+        if (tag == null || tag.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tag cannot be null or empty.");
+        }
+
+        if (!containsTag(tag)) {
+            throw new IllegalArgumentException("Tag not found: " + tag);
+        }
+
+        String[] newTags = new String[tagCount - 1];
+        int i = 0;
+
+        for (int j = 0; j < tagCount; j++) {
+            if (!tags[j].equalsIgnoreCase(tag)) {
+                newTags[i++] = tags[j];
+            }
+        }
+
+        tags = newTags;
+        tagCount--;
+        return true;
+
     }
 
     public boolean containsTag(String tag){
