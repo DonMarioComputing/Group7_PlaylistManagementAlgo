@@ -102,15 +102,52 @@ public class Song {
                 '}';
     }
 
+    /**
+     * Add a new tag to the song in sorted order
+     * if the tag already exist it's not added
+     * @param tag the tag to add
+     * @return true if the tag was added false if already existed
+     */
+
     public boolean addTag(String tag){
         // todo: ADD addTag() LOGIC
         // Should implement APPROPRIATE insert action
         // Question to ask yourself: Which is more appropriate here - overwrite or shift?
         // Reminder: Do not allow duplicate tags to be added!
         // Reminder: Make sure you insert in SORTED ORDER!
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+        if (tag==null){
+            throw new IllegalArgumentException("tag cannot be null");
+        }
+        tag =tag.trim();
 
+        if(tag.trim().isEmpty()){
+            throw new IllegalArgumentException("tag cannot be empty");
+
+        }
+        //Not Adding duplicates
+        if(containsTag(tag)){
+            return false;
+        }
+        //Expanding the array
+        if (tagCount==tags.length){
+            tags=Arrays.copyOf(tags,tags.length+3);
+        }
+        //Find the corrected insertion point
+        int insertIndex=0;
+        while(insertIndex<tagCount&&tags[insertIndex].compareToIgnoreCase(tag)<0){
+            insertIndex++;
+        }
+        //Shift elements to the right
+        for (int i=tagCount;i>insertIndex;i--){
+            tags[i]=tags[i-1];
+        }
+        //Insert the tag
+        tags[insertIndex]=tag;
+        tagCount++;
+        return true;
+
+
+    }
     public boolean removeTag(String tag){
         // todo: ADD removeTag() LOGIC
         // Should implement APPROPRIATE delete action
