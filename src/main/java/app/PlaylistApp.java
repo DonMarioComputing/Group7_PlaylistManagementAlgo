@@ -17,6 +17,7 @@ public class PlaylistApp {
 
             String choice = input.nextLine();
 
+
             switch(choice){
                 // if(case.equals("1")
                 case "1":
