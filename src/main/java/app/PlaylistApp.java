@@ -25,6 +25,9 @@ public class PlaylistApp {
             displayMenu();
             String choice = scanner.nextLine().trim();
 
+            /**
+             * @author DonMario
+             */
             switch (choice) {
                 case "1" -> displayAllSongs(songs);
                 case "2" -> sortSongsMenu(songs);
@@ -42,6 +45,9 @@ public class PlaylistApp {
         }
     }
 
+    /**
+     * @author DonMario
+     */
     private static void displayMenu() {
         System.out.println("\n--- Playlist Menu ---");
         System.out.println("1) Display all songs");
@@ -59,6 +65,7 @@ public class PlaylistApp {
     /**
      * Display all songs in the given array
      * @param songs is the array
+     * @author Nassim
      */
 
     private static void displayAllSongs(Song[] songs) {
@@ -73,6 +80,7 @@ public class PlaylistApp {
      * puser need to choose how to sort
      * tags or by title
      * @param songs is the array
+     * @author Nassim
      */
     private static void sortSongsMenu(Song[] songs){
         // Read user input
@@ -98,6 +106,7 @@ public class PlaylistApp {
      * no match
      *
      * @param songs is an array
+     * @author Nassim
      */
     private static void searchByTag(Song[] songs){
         //user input
