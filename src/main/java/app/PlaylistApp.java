@@ -124,6 +124,7 @@ public class PlaylistApp {
      * Songs array is sorted by title before searching
      *
      * @param songs array of Song objects
+     * @author DonMario
      */
     private static void searchByTitle(Song[] songs) {
         System.out.print("Enter song title to search: ");
@@ -152,6 +153,7 @@ public class PlaylistApp {
      * Allows the user to add or remove tags from a specific song
      *
      * @param songs array of Song objects
+     * @author DonMario
      */
     private static void editSongTags(Song[] songs) {
         System.out.print("Enter the title of the song to edit: ");
