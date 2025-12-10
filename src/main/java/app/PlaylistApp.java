@@ -112,10 +112,10 @@ public class PlaylistApp {
             System.out.println("Song not found: " + title);
         } else {
             System.out.println("Song found:");
-            for (Song song : found) {
-                System.out.println(song.format());
-
+            for (int i=0;i< found.length;i++) {
+                System.out.println(found[i].format());
             }
+
         }
     }
 
